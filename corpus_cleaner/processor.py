@@ -64,4 +64,19 @@ def preprocess_corpus(input_path: str, output_path: str, mode: str, config: Clea
     print("Сохранение результата...")
     docs = [doc for doc in docs if doc]
     save_documents(docs, output_path)
-    print("Готово!")
+    print("Очистка завершена.")
+
+def split_and_clean_sentences(input_path: str, output_path: str, mode: str) -> None:
+    print(f"Чтение файла {input_path}...")
+    with open(input_path, 'r', encoding='utf-8') as f:
+        text = f.read()
+
+    print("Токенизация и фильтрация предложений...")
+    cleaned_sentences = process_sentences_pipeline(text, mode)
+
+    print(f"Сохранение {len(cleaned_sentences)} предложений в {output_path}...")
+    with open(output_path, 'w', encoding='utf-8') as f:
+        for sentence in cleaned_sentences:
+            f.write(sentence + '\n')
+            
+    print("Завершено!")
