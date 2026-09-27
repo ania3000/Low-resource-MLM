@@ -17,7 +17,7 @@ from .cleaning import (
     filter_short_docs
 )
 from .deduplication import deduplicate_documents
-
+from .sentence_cleaner import process_sentences_pipeline
 
 def save_documents(docs: List[str], path: str) -> None:
     with open(path, 'w', encoding='utf-8') as f:
