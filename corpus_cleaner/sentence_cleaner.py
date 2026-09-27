@@ -70,11 +70,9 @@ def clean_sentence(sentence: str, mode: str) -> str:
         if sentence and not re.search(r'[а-яА-ЯӶӷҶҷӢӣҚқӮӯҲҳ]', sentence):  
             return ''
 
-    # Капитализация первого символа
     if sentence and sentence[0].isalpha():
         sentence = sentence[0].upper() + sentence[1:]
 
-    # Нормализация регистров слов
     if sentence:
         words = sentence.split()
         words = [normalize_word(w) for w in words]
