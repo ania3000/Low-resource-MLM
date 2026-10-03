@@ -1,2 +1,7 @@
 # Low-resource-MLM
-Code for training BERT models on language corpora
+## Corpus cleaning
+### Ossetic
+### Tajik
+
+## Training on MLM task
+WIP
