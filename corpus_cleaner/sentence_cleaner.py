@@ -39,7 +39,7 @@ def clean_sentence(sentence: str, mode: str) -> str:
         sentence = sentence.replace("¬", '')
         sentence = sentence.replace("{", "(")
 
-    garbage_chars = r'[ÀÂÃÄÇÊÌÍÎÏÑÒÓÔÕÙÝÞàáâãäåçèéêëìíîïðñòóôõöùúûüÿāœЉљўџґ]'
+    garbage_chars = r'[ÀÂÃÄÇÊÌÍÎÏÑÒÓÔÕÙÝÞàáâãäåçèéêëìíîïðñòóôõöùúûüÿāœЉљўџґδӡ]'
     if sentence and re.search(garbage_chars, sentence):
         return ''
     if sentence and len([ch for ch in sentence if ch.isalpha()]) == 1:
