@@ -9,6 +9,7 @@ from .cleaning import (
     remove_javascript_garbage_lines,
     remove_html_garbage,
     remove_urls_and_emails,
+    remove_emojis,
     fix_linebreaks,
     get_common_lines,
     remove_common_lines,
@@ -42,6 +43,10 @@ def preprocess_corpus(input_path: str, output_path: str, mode: str, config: Clea
         docs = [remove_javascript_garbage_lines(doc) for doc in tqdm(docs, desc="JS lines")]
         docs = [remove_html_garbage(doc) for doc in docs]
         docs = [remove_urls_and_emails(doc) for doc in docs]
+    
+    elif mode == 'tajik':
+        print("Удаление эмодзи (для таджикского)...")
+        docs = [remove_emojis(doc) for doc in docs]
 
     print("Удаление частотных строк...")
     docs = [fix_linebreaks(doc) for doc in docs]
