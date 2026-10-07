@@ -1,5 +1,6 @@
 import re
 import unicodedata
+import emoji
 from collections import Counter
 from typing import List, Set
 
@@ -77,6 +78,9 @@ def remove_urls_and_emails(text: str) -> str:
 
 def remove_source_artifacts(text: str) -> str:
     return re.sub(r'\bSputnik\s*/\s*', '', text)
+
+def remove_emojis(text: str) -> str:
+    return emoji.replace_emoji(text, replace='')
 
 def split_concatenated_names(text: str) -> str:
     return re.sub(r'(?<=[а-яё])(?=[А-ЯЁ])', ' ', text)
