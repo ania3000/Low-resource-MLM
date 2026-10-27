@@ -10,6 +10,7 @@ from .cleaning import (
     remove_html_garbage,
     remove_urls_and_emails,
     remove_emojis,
+    remove_untokenizable,
     fix_linebreaks,
     get_common_lines,
     remove_common_lines,
@@ -57,6 +58,10 @@ def preprocess_corpus(input_path: str, output_path: str, mode: str, config: Clea
         print("Дополнительная нормализация (для осетинского)...")
         docs = [remove_source_artifacts(doc) for doc in docs]
         docs = [split_concatenated_names(doc) for doc in docs]
+
+    elif mode == 'tajik':
+        print("Дополнительная нормализация (для таджикского)...")
+        docs = [remove_untokenizable(doc) for doc in docs]
 
     print("Фильтрация коротких документов...")
     docs = filter_short_docs(docs, config.min_chars)
