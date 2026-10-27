@@ -82,6 +82,52 @@ def remove_source_artifacts(text: str) -> str:
 def remove_emojis(text: str) -> str:
     return emoji.replace_emoji(text, replace='')
 
+def remove_untokenizable(text): 
+    to_del = [
+    'ɒ',
+    'ɜ',
+    'Ѩ',
+    'ʌ',
+    'ӡ',
+
+    '˚',
+    '̇',
+    '̣',
+    '̯',
+    '͎',
+    '᾽',
+
+    '٨',
+    'ځ',
+    'ږ',
+    'ښ',
+    'ګ',
+    'ې',
+    'ܐ',
+    'ܕ',
+    'ܝ',
+    'ܠ',
+
+    'ὕ',
+    'Ὑ',
+    '\u2430',
+
+    '┈',
+    '◦',
+    '☬',
+    '✓',
+    '✿',
+    '❁',
+    '➢',
+    '⠀',
+    '꧁',
+    '꧂',
+    '￼',
+    ]
+    for sym in to_del:
+        text = re.sub(sym, '', text)
+    return text
+
 def split_concatenated_names(text: str) -> str:
     return re.sub(r'(?<=[а-яё])(?=[А-ЯЁ])', ' ', text)
 
