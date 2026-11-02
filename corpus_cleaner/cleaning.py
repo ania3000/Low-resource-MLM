@@ -80,7 +80,9 @@ def remove_source_artifacts(text: str) -> str:
     return re.sub(r'\bSputnik\s*/\s*', '', text)
 
 def remove_source_artifacts_tj(text):
-    return re.sub(r'ДУШАНБЕ,/АМИТ «ховар»/', '', text)
+    text = re.sub(r'ДУШАНБЕ, /АМИТ «ховар»/', '', text)
+    text = re.sub(r'/АМИТ «ховар»/', '', text)
+    return text
 
 def remove_emojis(text: str) -> str:
     return emoji.replace_emoji(text, replace='')
