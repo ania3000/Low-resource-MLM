@@ -111,6 +111,7 @@ def remove_untokenizable(text):
     'ὕ',
     'Ὑ',
     '\u2430',
+    '\u200c',
 
     '┈',
     '◦',
