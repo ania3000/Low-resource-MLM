@@ -11,6 +11,7 @@ from .cleaning import (
     remove_urls_and_emails,
     remove_emojis,
     remove_untokenizable,
+    remove_non_cyrillic,
     fix_linebreaks,
     get_common_lines,
     remove_common_lines,
@@ -62,6 +63,7 @@ def preprocess_corpus(input_path: str, output_path: str, mode: str, config: Clea
     elif mode == 'tajik':
         print("Дополнительная нормализация (для таджикского)...")
         docs = [remove_untokenizable(doc) for doc in docs]
+        docs = [remove_non_cyrillic(doc) for doc in docs]
 
     print("Фильтрация коротких документов...")
     docs = filter_short_docs(docs, config.min_chars)
