@@ -63,9 +63,9 @@ def preprocess_corpus(input_path: str, output_path: str, mode: str, config: Clea
 
     elif mode == 'tajik':
         print("Дополнительная нормализация (для таджикского)...")
-        docs = [remove_source_artifacts_tj(doc) for doc in docs]
         docs = [remove_untokenizable(doc) for doc in docs]
         docs = [remove_non_cyrillic(doc) for doc in docs]
+        docs = [remove_source_artifacts_tj(doc) for doc in docs]
 
     print("Фильтрация коротких документов...")
     docs = filter_short_docs(docs, config.min_chars)
