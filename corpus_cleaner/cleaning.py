@@ -129,6 +129,9 @@ def remove_untokenizable(text):
         text = re.sub(sym, '', text)
     return text
 
+def remove_non_cyrillic(text):
+    return re.sub(r'[\u0600-\u074f]+', '', text)
+
 def split_concatenated_names(text: str) -> str:
     return re.sub(r'(?<=[а-яё])(?=[А-ЯЁ])', ' ', text)
 
