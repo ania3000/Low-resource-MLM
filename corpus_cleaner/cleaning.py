@@ -79,6 +79,9 @@ def remove_urls_and_emails(text: str) -> str:
 def remove_source_artifacts(text: str) -> str:
     return re.sub(r'\bSputnik\s*/\s*', '', text)
 
+def remove_source_artifacts_tj(text):
+    return re.sub(r'ДУШАНБЕ,/АМИТ «ховар»/', '', text)
+
 def remove_emojis(text: str) -> str:
     return emoji.replace_emoji(text, replace='')
 
@@ -130,7 +133,9 @@ def remove_untokenizable(text):
     return text
 
 def remove_non_cyrillic(text):
-    return re.sub(r'[\u0600-\u074f]+', '', text)
+    text = re.sub(r'[\u0600-\u074f]+', '', text)
+    text = re.sub(r'[\u0900-\u097f]+', '', text)
+    return text
 
 def split_concatenated_names(text: str) -> str:
     return re.sub(r'(?<=[а-яё])(?=[А-ЯЁ])', ' ', text)
