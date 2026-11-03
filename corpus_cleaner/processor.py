@@ -50,6 +50,11 @@ def preprocess_corpus(input_path: str, output_path: str, mode: str, config: Clea
     elif mode == 'tajik':
         print("Удаление эмодзи (для таджикского)...")
         docs = [remove_emojis(doc) for doc in docs]
+        docs = [remove_javascript_blocks(doc) for doc in tqdm(docs, desc="JS blocks")]
+        docs = [remove_noparse_tags(doc) for doc in docs]
+        docs = [remove_javascript_garbage_lines(doc) for doc in tqdm(docs, desc="JS lines")]
+        docs = [remove_html_garbage(doc) for doc in docs]
+        docs = [remove_urls_and_emails(doc) for doc in docs]
 
     print("Удаление частотных строк...")
     docs = [fix_linebreaks(doc) for doc in docs]
