@@ -48,7 +48,7 @@ def preprocess_corpus(input_path: str, output_path: str, mode: str, config: Clea
         docs = [remove_urls_and_emails(doc) for doc in docs]
     
     elif mode == 'tajik':
-        print("Удаление эмодзи (для таджикского)...")
+        print("Удаление эмодзи и мусора (для таджикского)...")
         docs = [remove_emojis(doc) for doc in docs]
         docs = [remove_javascript_blocks(doc) for doc in tqdm(docs, desc="JS blocks")]
         docs = [remove_noparse_tags(doc) for doc in docs]
