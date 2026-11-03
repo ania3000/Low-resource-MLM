@@ -26,7 +26,7 @@ def tokenize_sentences(text: str, mode: str) -> List[str]:
 def normalize_word(word: str) -> str:
     if len(word) > 1 and word[0].isupper() and word[1:].islower():
         return word
-    if not word.islower() and not word.isupper():
+    if word[0].isalpha() and not word.islower() and not word.isupper():
         return word.lower()
     return word
 
