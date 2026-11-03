@@ -39,23 +39,17 @@ def preprocess_corpus(input_path: str, output_path: str, mode: str, config: Clea
     print("Удаление повторов внутри документов...")
     docs = [remove_internal_duplicates(doc) for doc in docs]
 
-    if mode == 'ossetic':
-        print("Удаление мусора (для осетинского)...")
-        docs = [remove_javascript_blocks(doc) for doc in tqdm(docs, desc="JS blocks")]
-        docs = [remove_noparse_tags(doc) for doc in docs]
-        docs = [remove_javascript_garbage_lines(doc) for doc in tqdm(docs, desc="JS lines")]
-        docs = [remove_html_garbage(doc) for doc in docs]
-        docs = [remove_urls_and_emails(doc) for doc in docs]
+    print("Удаление мусора...")
+    docs = [remove_javascript_blocks(doc) for doc in tqdm(docs, desc="JS blocks")]
+    docs = [remove_noparse_tags(doc) for doc in docs]
+    docs = [remove_javascript_garbage_lines(doc) for doc in tqdm(docs, desc="JS lines")]
+    docs = [remove_html_garbage(doc) for doc in docs]
+    docs = [remove_urls_and_emails(doc) for doc in docs]
     
-    elif mode == 'tajik':
-        print("Удаление эмодзи и мусора (для таджикского)...")
+    if mode == 'tajik':
+        print("Удаление эмодзи (для таджикского)...")
         docs = [remove_emojis(doc) for doc in docs]
-        docs = [remove_javascript_blocks(doc) for doc in tqdm(docs, desc="JS blocks")]
-        docs = [remove_noparse_tags(doc) for doc in docs]
-        docs = [remove_javascript_garbage_lines(doc) for doc in tqdm(docs, desc="JS lines")]
-        docs = [remove_html_garbage(doc) for doc in docs]
-        docs = [remove_urls_and_emails(doc) for doc in docs]
-
+        
     print("Удаление частотных строк...")
     docs = [fix_linebreaks(doc) for doc in docs]
     common_lines = get_common_lines(docs, config.common_line_threshold)
